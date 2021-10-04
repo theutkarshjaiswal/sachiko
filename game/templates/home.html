@@ -1,0 +1,36 @@
+<h1>HELLO</h1>
+
+<h2>{{ user.username }}</h2>
+
+
+{% if user.is_authenticated %}
+
+    <a href="{% url 'logout' %}"><button type="submit">LOGOUT</button></a></br>
+    <br>
+    <h2><a href="{% url 'creategame' %}"><button type = "button"><h2>CREATE</h2></button></a></h2>
+    <h3>All view only API's are available here, to acces other features read the given documentaion or add the id of the objects at the end of < given api >/ id.</h3>
+    <h2><a href="{% url 'user'  %}"><button type="button"><h2>user API</h2></button></a></h2>
+    <h2><a href="{% url 'category'  %}"><button type="button"><h2>category API</h2></button></a></h2>
+    <h2><a href="{% url 'transaction'  %}"><button type="button"><h2>transaction API</h2></button></a></h2>
+    <h2><a href="{% url 'game'  %}"><button type="button"><h2>game API</h2></button></a></h2>
+    <h2>Games to play</h2>
+    {% for game in obj %}
+        <h2>{{game.title}} -<a href="{% url 'play' game.id %}"><button type="button">PLAY</button></a></h2>
+    {% endfor %}
+
+    <h2>This is from firebase</h2>
+    {% for i in base %}
+        {% for j,k in i.val.items %}
+            <h3>{{j}} {{k}}</h3>
+        {% endfor %}
+    {% endfor %}
+
+{% else %}
+    <a href="{% url 'login' %}"><button type="submit">LOGIN</button></a><br>
+    <a href="{% url 'signup' %}"><button type="submit">SIGNUP</button></a>
+
+{% endif %}
+
+
+
+
